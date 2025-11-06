@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=MedievalSharp&display=swap');
+
+body {
+  font-family: 'MedievalSharp', cursive;
+  background: radial-gradient(#3a2a1b, #1a120b);
+  color: #f3e6c4;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h1 {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 1.8rem;
+  margin-top: 20px;
+  color: #ffcc66;
+  text-shadow: 2px 2px 4px #000;
+}
+
+h2 {
+  color: #ffb84d;
+  margin: 10px 0;
+  font-size: 1.3rem;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.container {
+  background: rgba(40, 25, 10, 0.9);
+  border: 3px solid #bfa06a;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 0 20px rgba(255, 215, 128, 0.3);
+}
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+button {
+  background: linear-gradient(145deg, #7b1c1c, #4e0f0f);
+  border: 2px solid #bfa06a;
+  color: #f3e6c4;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  padding: 8px;
+  font-family: 'MedievalSharp', cursive;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 0 #2a0e0e;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #2a0e0e;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #2a0e0e;
+}
+
+.block-options {
+  background: rgba(30, 20, 10, 0.9);
+  border: 2px solid #bfa06a;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.block-options label {
+  display: block;
+  text-align: left;
+  margin: 3px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.result {
+  font-size: 1.6rem;
+  margin: 15px 0;
+  color: #ffcc66;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.actions-list {
+  margin: 10px 0;
+  font-size: 1.1rem;
+  min-height: 20px;
+}
+
+.reset {
+  background: linear-gradient(145deg, #555, #222);
+  border: 2px solid #bfa06a;
+}
+
+.reroll-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.3rem;
+}
+
+.reroll-control button {
+  background: linear-gradient(145deg, #1c4c1c, #0b250b);
+  border: 2px solid #77ff77;
+  color: #d6ffd6;
+}
