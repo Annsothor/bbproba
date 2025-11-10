@@ -9,59 +9,129 @@
 <body>
   <h1>Blood Bowl Probabilité ⚔️</h1>
 
-  <div class="container">
-    <!-- --- Jets simples --- -->
-    <h2>Jets de dés 🎲</h2>
-    <div class="btn-grid">
-      <button onclick="addAction({type:'roll',threshold:2})">2+</button>
-      <button onclick="addAction({type:'roll',threshold:3})">3+</button>
-      <button onclick="addAction({type:'roll',threshold:4})">4+</button>
-      <button onclick="addAction({type:'roll',threshold:5})">5+</button>
-      <button onclick="addAction({type:'roll',threshold:6})">6+</button>
+  <div class="main-layout">
+    <!-- ==================== SECTION ACTIONS ==================== -->
+    <div class="container">
+      <h2>Jets de dés 🎲</h2>
+      <div class="btn-grid">
+        <button onclick="addAction({type:'roll',threshold:2})">2+</button>
+        <button onclick="addAction({type:'roll',threshold:3})">3+</button>
+        <button onclick="addAction({type:'roll',threshold:4})">4+</button>
+        <button onclick="addAction({type:'roll',threshold:5})">5+</button>
+        <button onclick="addAction({type:'roll',threshold:6})">6+</button>
+      </div>
+
+      <h2>Blocages 🪓</h2>
+      <div class="btn-grid">
+        <button onclick="chooseBlock('3d-contre')">3D contre</button>
+        <button onclick="chooseBlock('2d-contre')">2D contre</button>
+        <button onclick="chooseBlock('1d')">1D</button>
+        <button onclick="chooseBlock('2d')">2D</button>
+        <button onclick="chooseBlock('3d')">3D</button>
+      </div>
+
+      <div id="blockOptions" class="block-options hidden">
+        <p>Résultats considérés comme réussis :</p>
+        <label><input type="checkbox" value="pow" checked> POW</label>
+        <label><input type="checkbox" value="powpush"> POW/PUSH</label>
+        <label><input type="checkbox" value="push"> PUSH</label>
+        <label><input type="checkbox" value="bothdown"> BOTH DOWN</label>
+        <label><input type="checkbox" value="skull"> SKULL</label>
+        <button onclick="confirmBlockChoice()">OK</button>
+      </div>
+
+      <h2>Compétences ⚒️</h2>
+      <div class="skills-grid">
+        <label><input type="checkbox" id="skill-dodge"> Esquive</label>
+        <label><input type="checkbox" id="skill-surefeet"> Équilibre</label>
+        <label><input type="checkbox" id="skill-surehands"> Prise sûre</label>
+        <label><input type="checkbox" id="skill-pass"> Passe</label>
+        <label><input type="checkbox" id="skill-catch"> Réception</label>
+      </div>
+
+      <h2>Relances d'équipe 🔁</h2>
+      <div class="reroll-control">
+        <button onclick="changeRerolls(-1)">-</button>
+        <span id="rerollCount">0</span>
+        <button onclick="changeRerolls(1)">+</button>
+      </div>
+
+      <div class="result" id="result">Probabilité : 100%</div>
+      <div class="actions-list" id="actions"></div>
+      <button class="reset" onclick="resetAll()">🔄 Reset</button>
     </div>
 
-    <!-- --- Blocages --- -->
-    <h2>Blocages 🪓</h2>
-    <div class="btn-grid">
-      <button onclick="chooseBlock('3d-contre')">3D contre</button>
-      <button onclick="chooseBlock('2d-contre')">2D contre</button>
-      <button onclick="chooseBlock('1d')">1D</button>
-      <button onclick="chooseBlock('2d')">2D</button>
-      <button onclick="chooseBlock('3d')">3D</button>
-    </div>
+    <!-- ==================== SECTION ARMURE / BLESSURE ==================== -->
+    <div class="container armor-container">
+      <h2>Jet d'Armure 🛡️</h2>
 
-    <div id="blockOptions" class="block-options hidden">
-      <p>Résultats considérés comme réussis :</p>
-      <label><input type="checkbox" value="pow" checked> POW</label>
-      <label><input type="checkbox" value="powpush"> POW/PUSH</label>
-      <label><input type="checkbox" value="push"> PUSH</label>
-      <label><input type="checkbox" value="bothdown"> BOTH DOWN</label>
-      <label><input type="checkbox" value="skull"> SKULL</label>
-      <button onclick="confirmBlockChoice()">OK</button>
-    </div>
+  <label>Armure du joueur :
+    <select id="armorValue">
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+    </select>
+  </label>
 
-    <!-- --- Compétences --- -->
-    <h2>Compétences ⚒️</h2>
-    <div class="skills-grid">
-      <label><input type="checkbox" id="skill-dodge"> Esquive</label>
-      <label><input type="checkbox" id="skill-surefeet"> Équilibre</label>
-      <label><input type="checkbox" id="skill-surehands"> Prise sûre</label>
-      <label><input type="checkbox" id="skill-pass"> Passe</label>
-      <label><input type="checkbox" id="skill-catch"> Réception</label>
-    </div>
+      <label>Bonus d'agression :
+        <select id="foulBonus">
+          <option value="0">+0</option>
+          <option value="1">+1</option>
+          <option value="2">+2</option>
+          <option value="3">+3</option>
+          <option value="4">+4</option>
+          <option value="5">+5</option>
+          <option value="6">+6</option>
+          <option value="7">+7</option>
+        </select>
+      </label>
 
-    <!-- --- Relances --- -->
-    <h2>Relances d'équipe 🔁</h2>
-    <div class="reroll-control">
-      <button onclick="changeRerolls(-1)">-</button>
-      <span id="rerollCount">0</span>
-      <button onclick="changeRerolls(1)">+</button>
-    </div>
+      <label>Châtaigne (armure) :
+        <select id="mbArmor">
+          <option value="0">Aucune</option>
+          <option value="1">+1</option>
+          <option value="2">+2</option>
+        </select>
+      </label>
 
-    <!-- --- Résultat --- -->
-    <div class="result" id="result">Probabilité : 100%</div>
-    <div class="actions-list" id="actions"></div>
-    <button class="reset" onclick="resetAll()">🔄 Reset</button>
+      <label><input type="checkbox" id="claw"> Griffe (armure = 8)</label>
+      <label><input type="checkbox" id="armorReroll"> Relance d'armure</label>
+
+      <div class="result" id="armorResult">Chance de passer l’armure : 0%</div>
+
+      <hr>
+
+      <h2>Jet de Blessure ☠️</h2>
+      <label>Châtaigne (blessure) :
+        <select id="mbInjury">
+          <option value="0">Aucune</option>
+          <option value="1">+1</option>
+          <option value="2">+2</option>
+        </select>
+      </label>
+
+      <label><input type="checkbox" id="stunty"> Minus (+1 blessure)</label>
+
+      <label>Bonus blessure :
+        <select id="injuryBonus">
+          <option value="0">+0</option>
+          <option value="1">+1</option>
+          <option value="2">+2</option>
+          <option value="3">+3</option>
+        </select>
+      </label>
+
+      <button onclick="calculateArmorAndInjury()">Calculer</button>
+
+      <div class="result" id="injuryResults">
+        KO : 0% — Blessure : 0%
+      </div>
+    </div>
   </div>
 
   <script src="cssjs/bbproba.js"></script>

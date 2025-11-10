@@ -11,22 +11,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
 }
 
-h1 {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 1.8rem;
-  margin-top: 20px;
-  color: #ffcc66;
-  text-shadow: 2px 2px 4px #000;
-}
-
-h2 {
-  color: #ffb84d;
-  margin: 10px 0;
-  font-size: 1.3rem;
-  text-shadow: 1px 1px 2px #000;
+.main-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .container {
@@ -34,7 +26,6 @@ h2 {
   border: 3px solid #bfa06a;
   border-radius: 20px;
   padding: 20px;
-  margin: 20px;
   width: 90%;
   max-width: 420px;
   box-shadow: 0 0 20px rgba(255, 215, 128, 0.3);
@@ -86,19 +77,13 @@ button:active {
   margin: 10px 0;
 }
 
-.block-options label {
-  display: block;
-  text-align: left;
-  margin: 3px 0;
-}
-
 .hidden {
   display: none;
 }
 
 .result {
-  font-size: 1.6rem;
-  margin: 15px 0;
+  font-size: 1.4rem;
+  margin: 10px 0;
   color: #ffcc66;
   text-shadow: 1px 1px 3px #000;
 }
@@ -106,7 +91,6 @@ button:active {
 .actions-list {
   margin: 10px 0;
   font-size: 1.1rem;
-  min-height: 20px;
 }
 
 .reset {
@@ -126,4 +110,14 @@ button:active {
   background: linear-gradient(145deg, #1c4c1c, #0b250b);
   border: 2px solid #77ff77;
   color: #d6ffd6;
+}
+
+select {
+  font-family: 'MedievalSharp', cursive;
+  background: #4e0f0f;
+  color: #f3e6c4;
+  border: 2px solid #bfa06a;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 4px;
 }

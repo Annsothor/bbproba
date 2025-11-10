@@ -2,6 +2,8 @@ let actions = [];
 let rerollCount = 0;
 let currentBlock = null;
 
+// ====================== PROBAS ACTIONS ======================
+
 function successChance(threshold) {
   return (7 - threshold) / 6;
 }
@@ -41,11 +43,9 @@ function blockSuccessProb(type, successes) {
   if (type === "2d-contre") dice = 2;
   if (type === "3d-contre") dice = 3;
 
-  if (type.includes("contre")) {
-    return Math.pow(pFace, dice); // défavorable
-  } else {
-    return 1 - Math.pow(1 - pFace, dice); // favorable
-  }
+  return type.includes("contre")
+    ? Math.pow(pFace, dice)
+    : 1 - Math.pow(1 - pFace, dice);
 }
 
 function hasSkill(skillId) {
@@ -75,17 +75,12 @@ function computeProbability() {
     else if (a.type.includes("d")) p = blockSuccessProb(a.type, a.successes);
 
     const skill = getSkillForAction(a);
-    let usedReroll = false;
 
     if (skill) {
-      // relance de compétence
-      p = p + (1 - p) * p;
-      usedReroll = true;
+      p = p + (1 - p) * p; // reroll de compétence
     } else if (rerollsLeft > 0 && p < 1) {
-      // sinon relance d’équipe
-      p = p + (1 - p) * p;
+      p = p + (1 - p) * p; // reroll d’équipe
       rerollsLeft -= 1;
-      usedReroll = true;
     }
 
     total *= p;
@@ -121,3 +116,54 @@ function resetAll() {
 }
 
 updateDisplay();
+
+// ====================== ARMURE / BLESSURE ======================
+
+function roll2d6Prob(threshold) {
+  // Probabilité que 2d6 + bonus >= seuil
+  let count = 0;
+  for (let i = 2; i <= 12; i++) {
+    if (i >= threshold) count += get2d6Combos(i);
+  }
+  return count / 36;
+}
+
+function get2d6Combos(sum) {
+  return [0,0,1,2,3,4,5,6,5,4,3,2,1][sum] || 0;
+}
+
+function calculateArmorAndInjury() {
+  let armor = parseInt(document.getElementById("armorValue").value);
+  const foul = parseInt(document.getElementById("foulBonus").value);
+  const mbArmor = parseInt(document.getElementById("mbArmor").value);
+  const claw = document.getElementById("claw").checked;
+  const armorReroll = document.getElementById("armorReroll").checked;
+
+  let mbInjury = parseInt(document.getElementById("mbInjury").value);
+  const stunty = document.getElementById("stunty").checked;
+  const injuryBonus = parseInt(document.getElementById("injuryBonus").value);
+
+  // griffe -> armure max 8
+  if (claw && armor > 8) armor = 8;
+
+  // probas d’armure
+  let neededArmor = armor - (foul + mbArmor);
+  let pArmor = roll2d6Prob(neededArmor);
+
+  if (armorReroll) pArmor = pArmor + (1 - pArmor) * pArmor;
+
+  document.getElementById("armorResult").textContent =
+    "Chance de passer l’armure : " + (pArmor * 100).toFixed(2) + "%";
+
+  // Si Châtaigne utilisée sur armure, pas dispo sur blessure
+  let mbUsedOnArmor = mbArmor > 0;
+  if (mbUsedOnArmor) mbInjury = 0;
+
+  // calcul blessure (8-9 KO / 10-12 blessé)
+  let totalBonus = mbInjury + injuryBonus + (stunty ? 1 : 0);
+  let pKO = roll2d6Prob(8 - totalBonus) - roll2d6Prob(10 - totalBonus);
+  let pCas = roll2d6Prob(10 - totalBonus);
+
+  document.getElementById("injuryResults").textContent =
+    "KO : " + (pKO * 100).toFixed(2) + "% — Blessure : " + (pCas * 100).toFixed(2) + "%";
+}
