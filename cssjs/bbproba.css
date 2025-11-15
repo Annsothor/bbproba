@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bowlby+One&family=Alfa+Slab+One&display=swap');
 
 * {
   box-sizing: border-box;
@@ -7,9 +7,10 @@
 }
 
 body {
-  font-family: 'Roboto Condensed', sans-serif;
-  /* fond inspiré carte : bleu profond -> dégradé */
-  background: linear-gradient(135deg, #0d2a52 0%, #1a3a6b 50%, #071833 100%);
+  font-family: 'Arial Black', sans-serif;
+  background: #1A237E;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.03) 35px, rgba(255,255,255,.03) 70px);
   color: #ffffff;
   min-height: 100vh;
   padding: 20px;
@@ -19,10 +20,8 @@ body {
   text-align: center;
   margin-bottom: 30px;
   padding: 20px;
-  /* header avec bande rouge / bleu, bord doré */
-  background: linear-gradient(90deg, #d32f2f 0%, #0d2a52 50%, #d32f2f 100%);
+  background-color: #c62828;
   border-radius: 15px;
-  border: 3px solid #d4af37;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -30,18 +29,15 @@ body {
   font-family: 'Bebas Neue', cursive;
   font-size: 3rem;
   letter-spacing: 4px;
-  color: #ffffff;
-  /* contour rouge profond + ombre pour effet "lettre en relief" */
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 6px rgba(211,47,47,0.08);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
   margin-bottom: 5px;
 }
 
 .tagline {
   font-size: 1rem;
-  opacity: 0.95;
+  opacity: 0.9;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #d4af37;
 }
 
 .main-layout {
@@ -55,23 +51,21 @@ body {
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
-  /* bordure rouge comme sur la carte + touche dorée dans l'ombre */
-  border: 3px solid #d32f2f;
+  border: 3px solid #1976d2;
   border-radius: 20px;
   padding: 25px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
 }
 
 .container:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(25, 118, 210, 0.12), 
-              0 0 18px rgba(212,175,55,0.08);
+  box-shadow: 0 15px 40px rgba(25, 118, 210, 0.3);
 }
 
 h2 {
@@ -80,8 +74,7 @@ h2 {
   color: #ffffff;
   margin-bottom: 15px;
   padding-bottom: 10px;
-  /* ligne de séparation dorée */
-  border-bottom: 3px solid #d4af37;
+  border-bottom: 3px solid #c62828;
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -117,19 +110,18 @@ button:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* boutons principaux : palette carte */
 .btn-dice {
-  background: linear-gradient(145deg, #0d47a1, #1565c0); /* bleu sportif */
+  background: linear-gradient(145deg, #1976d2, #1565c0);
   color: white;
   border: 2px solid #ffffff;
 }
 
 .btn-dice:hover {
-  background: linear-gradient(145deg, #1976d2, #0d47a1);
+  background: linear-gradient(145deg, #2196f3, #1976d2);
 }
 
 .btn-block {
-  background: linear-gradient(145deg, #d32f2f, #b71c1c); /* rouge vif */
+  background: linear-gradient(145deg, #c62828, #b71c1c);
   color: white;
   border: 2px solid #ffffff;
 }
@@ -139,8 +131,8 @@ button:active {
 }
 
 .block-options {
-  background: rgba(25, 118, 210, 0.12);
-  border: 2px solid #0d47a1;
+  background: rgba(25, 118, 210, 0.15);
+  border: 2px solid #1976d2;
   border-radius: 12px;
   padding: 15px;
   margin: 15px 0;
@@ -169,7 +161,7 @@ button:active {
 }
 
 .block-checkboxes label:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .hidden {
@@ -199,16 +191,16 @@ button:active {
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 2px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .skills-grid label:hover {
-  background: rgba(25, 118, 210, 0.14);
-  border-color: #0d47a1;
+  background: rgba(25, 118, 210, 0.2);
+  border-color: #1976d2;
 }
 
 input[type="checkbox"] {
@@ -226,9 +218,9 @@ input[type="checkbox"] {
 }
 
 .btn-reroll {
-  background: linear-gradient(145deg, #d4af37, #f9a825); /* doré / orange */
-  color: #0d2a52;
-  border: 2px solid #d4af37;
+  background: linear-gradient(145deg, #ffa726, #ff9800);
+  color: white;
+  border: 2px solid #ffffff;
   width: 50px;
   height: 50px;
   font-size: 1.8rem;
@@ -236,13 +228,13 @@ input[type="checkbox"] {
 }
 
 .btn-reroll:hover {
-  background: linear-gradient(145deg, #ffd54f, #ffb300);
+  background: linear-gradient(145deg, #ffb74d, #ffa726);
 }
 
 .reroll-number {
   font-family: 'Bebas Neue', cursive;
   font-size: 2.5rem;
-  color: #ffd54f;
+  color: #ffa726;
   min-width: 60px;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -254,34 +246,33 @@ input[type="checkbox"] {
   text-align: center;
   padding: 15px;
   margin: 15px 0;
-  /* résultat : cadre doré */
-  background: linear-gradient(145deg, rgba(212,175,55,0.08), rgba(13,42,82,0.18));
-  border: 3px solid #d4af37;
+  background: linear-gradient(145deg, rgba(46, 125, 50, 0.3), rgba(27, 94, 32, 0.3));
+  border: 3px solid #4caf50;
   border-radius: 12px;
-  color: #ffd54f;
+  color: #4caf50;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 20px rgba(212,175,55,0.12);
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
 }
 
 .armor-result {
-  background: linear-gradient(145deg, rgba(13,42,82,0.28), rgba(21,101,192,0.18));
-  border-color: #1976d2;
+  background: linear-gradient(145deg, rgba(25, 118, 210, 0.3), rgba(21, 101, 192, 0.3));
+  border-color: #2196f3;
   color: #64b5f6;
-  box-shadow: 0 0 20px rgba(33, 150, 243, 0.08);
+  box-shadow: 0 0 20px rgba(33, 150, 243, 0.3);
 }
 
 .injury-result {
-  background: linear-gradient(145deg, rgba(211,47,47,0.18), rgba(183,28,28,0.18));
+  background: linear-gradient(145deg, rgba(198, 40, 40, 0.3), rgba(183, 28, 28, 0.3));
   border-color: #f44336;
   color: #ef5350;
-  box-shadow: 0 0 20px rgba(244, 67, 54, 0.08);
+  box-shadow: 0 0 20px rgba(244, 67, 54, 0.3);
 }
 
 .actions-list {
   text-align: center;
   padding: 12px;
   margin: 10px 0;
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   font-size: 1.1rem;
   min-height: 45px;
@@ -301,7 +292,7 @@ input[type="checkbox"] {
 }
 
 .btn-calculate {
-  background: linear-gradient(145deg, #0d47a1, #1565c0);
+  background: linear-gradient(145deg, #1976d2, #1565c0);
   color: white;
   border: 2px solid #ffffff;
   width: 100%;
@@ -311,7 +302,7 @@ input[type="checkbox"] {
 }
 
 .btn-calculate:hover {
-  background: linear-gradient(145deg, #1976d2, #0d47a1);
+  background: linear-gradient(145deg, #2196f3, #1976d2);
 }
 
 label {
@@ -319,14 +310,13 @@ label {
   margin: 12px 0;
   font-weight: 700;
   font-size: 1rem;
-  color: #ffffff;
 }
 
 select {
   font-family: 'Roboto Condensed', sans-serif;
-  background: rgba(25, 118, 210, 0.15);
+  background: rgba(25, 118, 210, 0.2);
   color: white;
-  border: 2px solid #0d47a1;
+  border: 2px solid #1976d2;
   border-radius: 8px;
   padding: 8px 12px;
   margin: 5px 0;
@@ -336,23 +326,23 @@ select {
 }
 
 select:hover {
-  background: rgba(25, 118, 210, 0.22);
-  border-color: #1976d2;
+  background: rgba(25, 118, 210, 0.3);
+  border-color: #2196f3;
 }
 
 select option {
-  background: #071833;
+  background: #0a1f44;
   color: white;
 }
 
 hr {
   border: none;
-  border-top: 2px solid rgba(255, 255, 255, 0.12);
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
   margin: 25px 0;
 }
 
 .injury-ko {
-  color: #ffd54f;
+  color: #ffa726;
 }
 
 .injury-cas {
